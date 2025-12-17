@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沙鹿海線宵夜 | Shalu Night Eats</title>
+    <style>
+        /* 基於報告中的 A/B 測試結果，採用「深藍色 + 圖多」的設計風格 
+           以及卡片式設計來呈現店家資訊 
+        */
+        :root {
+            --primary-bg: #0f172a; /* 深藍色背景 */
+            --card-bg: #1e293b;    /* 卡片深灰藍 */
+            --accent: #fbbf24;     /* 亮黃色點綴 (如路燈/月光) */
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Introduction Section [cite: 8, 9] */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .intro p {
+            color: var(--text-sub);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Store Grid (Card Style)  */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .store-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .store-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-image {
+            height: 200px;
+            background-color: #334155;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Badges for operating hours */
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--accent);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .card-content .info {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .card-content .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #334155;
+            color: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .store-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>沙鹿海線宵夜</h1>
+        <p class="subtitle">探索大學生與夜貓子的深夜食堂</p>
+        <a href="#stores" class="cta-button">開始探索</a>
+    </header>
+
+    <section class="section">
+        <div class="intro">
+            <h2>關於我們</h2>
+            <p>
+                我們是一群愛熬夜的大學生。為了造福同樣在深夜飢腸轆轆的靈魂，我們整理了台中海線（沙鹿區）營業至凌晨 12 點過後的美味地圖。這裡不只是介紹美食，更是海線夜間文化的縮影。
+            </p>
+        </div>
+    </section>
+
+    <section id="stores" class="section">
+        <div class="intro">
+            <h2>精選深夜食堂</h2>
+            <p>在地人推薦、學生最愛的高 CP 值宵夜 [cite: 10]</p>
+        </div>
+
+        <div class="store-grid">
+            
+            <div class="store-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1569614486580-0a2a4e277c0c?auto=format&fit=crop&w=600&q=80');">
+                    <span class="status-badge">營業至 00:30</span>
+                </div>
+                <div class="card-content">
+                    <h3>四三九黑白切</h3>
+                    <div class="info">
+                        <span>📍 北勢東路 439 號</span>
+                        <span>⏰ 17:00 - 00:30</span>
+                        <span>💰 $1 - 200 元</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">台式小吃</span>
+                        <span class="tag">學生最愛</span>
+                        <span class="tag">4.5顆星</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80');">
+                    <span class="status-badge">營業至 05:00</span>
+                </div>
+                <div class="card-content">
+                    <h3>月半食堂 (沙鹿總店)</h3>
+                    <div class="info">
+                        <span>📍 沙鹿區北勢東路</span>
+                        <span>⏰ 20:00 - 05:00</span>
+                        <span>💰 平價美食</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">超長營業</span>
+                        <span class="tag">控肉飯</span>
+                        <span class="tag">深夜救星</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1615937691194-97dbd3f3e6ef?auto=format&fit=crop&w=600&q=80');">
+                    <span class="status-badge">營業至 02:00</span>
+                </div>
+                <div class="card-content">
+                    <h3>塩琢</h3>
+                    <div class="info">
+                        <span>📍 沙鹿海線</span>
+                        <span>⏰ 20:00 - 02:00</span>
+                        <span>💰 精緻宵夜</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">海鮮食堂</span>
+                        <span class="tag">日式氛圍</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1626804475297-411f8c2b6ce5?auto=format&fit=crop&w=600&q=80');">
+                    <span class="status-badge">營業至 01:30</span>
+                </div>
+                <div class="card-content">
+                    <h3>早到晚到 (沙鹿靜宜店)</h3>
+                    <div class="info">
+                        <span>📍 北勢東路 536-8 號二樓</span>
+                        <span>⏰ 17:00 - 01:30</span>
+                        <span>💰 $1 - 200 元</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">聚餐首選</span>
+                        <span class="tag">多樣化</span>
+                        <span class="tag">4.4顆星</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="store-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414395d8?auto=format&fit=crop&w=600&q=80');">
+                    <span class="status-badge">營業至 03:30</span>
+                </div>
+                <div class="card-content">
+                    <h3>食嗑餵您</h3>
+                    <div class="info">
+                        <span>📍 北勢東路 466 號</span>
+                        <span>⏰ 07:30 - 03:30</span>
+                        <span>💰 早午餐/宵夜</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">超長時段</span>
+                        <span class="tag">外送熱門</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>Copyright © 2025 沙鹿海線宵夜製作團隊</p>
+        <p>成員：蔡宜家、莊登貴、彭毅、林辰蔚、林珈○、郭宸宏</p>
+        <p>本網站為數位敘事實期中報告專題製作，內容僅供參考。</p>
+    </footer>
+
+</body>
+</html>
